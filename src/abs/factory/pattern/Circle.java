@@ -1,0 +1,8 @@
+package abs.factory.pattern;
+
+public class Circle implements IShape {
+	
+	public void draw() {
+		System.out.println("Dibuja el circulo");
+	}
+}
