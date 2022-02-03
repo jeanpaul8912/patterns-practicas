@@ -25,11 +25,12 @@ public class Main {
 			} else if (bandera == 2) {
 				int cantidadCarros = fabricaCarro.obtenerCantidadCarros();
 				System.out.println("\nCantidad total de carros: "+cantidadCarros);
+			} else {
+				bandera = -1;
 			}
-			
-			
 		}	
 		
 		System.out.println("Fin!");
+		entrada.close();
 	}
 }

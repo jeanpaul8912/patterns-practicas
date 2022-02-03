@@ -29,7 +29,7 @@ public class FabricaCarro {
 	}
 	
 	public List<Carro> obtenerListaCarros() {
-		//Implementación patron LazyInicialization
+		
 		if(listaCarros == null) {
 			listaCarros = crearCarros();
 		}
