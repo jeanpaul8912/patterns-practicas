@@ -1,0 +1,27 @@
+<div class="col-md-12">
+    <button type="submit" routerLinkActive="router-link-active" (click)="cargarImagenes()" class="btn btn-primary btn-sm">
+        <span class="d-none d-md-inline">Cargar</span>
+    </button>
+
+    <button routerLinkActive="router-link-active" (click)="limpiar()" class="btn btn-primary btn-sm">
+        <span class="d-none d-md-inline">Limpiar</span>
+    </button>
+</div>
+<br>
+<div class="col-md-12">        
+
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col" sortable="nombre">Titulo</th>
+                <th scope="col" sortable="apellidos">Image</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let imagen of listaImagenes">   
+                <td>{{ imagen.title }}</td> 
+                <td><img src="../../assets/libro.png"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>

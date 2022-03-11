@@ -1,39 +1,50 @@
 package lazyInitialization.pattern;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
-public class FabricaCarro {
-	
-	List<Carro> listaCarros = null;
-	Integer cantidadCarrosACrear = 100;
+public class FabricaCarro implements IFabricaCarro {
 
-	public List<Carro> crearCarros() {
-		
-		List<Carro> listaCarros  = new ArrayList<Carro>(cantidadCarrosACrear);
-		
-		for(int contador = 1; contador <= cantidadCarrosACrear; contador++) {
-			listaCarros.add(new Carro("L."+contador));
+	private List<ICarro> listaCarros = null;
+	private Integer cantidadCarrosACrear = 100;
+
+	private void crearCarros() {
+		try {
+			listaCarros = new ArrayList<ICarro>(cantidadCarrosACrear);
+			Thread.sleep(5000);
+
+			for (int contador = 1; contador <= cantidadCarrosACrear; contador++) {
+				ICarro carro;
+
+				if (contador % 2 == 0) {
+					carro = new Camion("Wagon", "GMC", 2021, 3, "Blanco", "" + new Date() + contador);
+				} else {
+					carro = new Automovil("CX5", "mazda", 2021, 5, "Negro", "" + new Date() + contador);
+				}
+
+				listaCarros.add(carro);
+			}
+		} catch (InterruptedException e) {
+			e.printStackTrace();
 		}
-		
-		return listaCarros;
 	}
-	
-	public Integer obtenerCantidadCarros() {	
-		
-		if(listaCarros == null) {
+
+	public Integer obtenerCantidadCarros() {
+
+		if (listaCarros == null) {
 			return 0;
 		}
-		
+
 		return listaCarros.size();
 	}
-	
-	public List<Carro> obtenerListaCarros() {
-		
-		if(listaCarros == null) {
-			listaCarros = crearCarros();
+
+	public List<ICarro> obtenerListaCarros() {
+
+		if (listaCarros == null) {
+			crearCarros();
 		}
-		
+
 		return listaCarros;
 	}
 }
